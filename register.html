@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="register.js" defer></script>
+</head>
+<body>
+<table>
+  <tr class="nav">
+    <td><a href="index.html">Home</a></td>
+    <td><a href="about.html">About</a></td>
+    <td colspan="2"></td>
+    <td><a href="login.html">Login</a></td>
+    <td><a href="register.html">Register</a></td>
+  </tr>
+  <tr class="banner">
+    <td colspan="6">
+      <h1>Create Your Account</h1>
+      <p>Join Murtaza Rasheed's journey!</p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4" class="content">
+      <h2>Sign Up</h2>
+      <form id="registerForm" action="#" method="post">
+        <label for="fullname">Full Name:</label>
+        <input type="text" id="fullname" placeholder="Enter your full name">
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Enter a username">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Enter your email address">
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter a strong password">
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob">
+
+        <label>Gender:</label>
+        <div class="option-group">
+          <label><input type="radio" name="gender" value="male"> Male</label>
+          <label><input type="radio" name="gender" value="female"> Female</label>
+        </div>
+
+        <input type="submit" value="Register">
+      </form>
+    </td>
+    <td colspan="2" class="sidebar">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html">Register</a></li>
+      </ul>
+      <p>Start your journey today!</p>
+    </td>
+  </tr>
+  <tr class="footer">
+    <td colspan="6">&copy; 2025 Murtaza Rasheed</td>
+  </tr>
+</table>
+</body>
+</html>

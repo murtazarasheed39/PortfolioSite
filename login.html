@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="login.js" defer></script>
+</head>
+<body>
+<table>
+  <tr class="nav">
+    <td><a href="index.html">Home</a></td>
+    <td><a href="about.html">About</a></td>
+    <td colspan="2"></td>
+    <td><a href="login.html">Login</a></td>
+    <td><a href="register.html">Register</a></td>
+  </tr>
+  <tr class="banner">
+    <td colspan="6">
+      <h1>Welcome Back</h1>
+      <p>Login to your account</p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4" class="content">
+      <h2>Sign In</h2>
+      <form id="loginForm" action="#" method="post">
+        <label for="login-email">Email:</label>
+        <input type="email" id="login-email" placeholder="Enter your email" required>
+
+        <label for="login-password">Password:</label>
+        <input type="password" id="login-password" placeholder="Enter your password" required>
+
+        <div class="option-group">
+          <label><input type="checkbox" id="remember"> Remember me</label>
+        </div>
+
+        <input type="submit" value="Login">
+      </form>
+    </td>
+    <td colspan="2" class="sidebar">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html">Register</a></li>
+      </ul>
+      <p>New here? <a href="register.html">Register today!</a></p>
+    </td>
+  </tr>
+  <tr class="footer">
+    <td colspan="6">&copy; 2025 Murtaza Rasheed</td>
+  </tr>
+</table>
+</body>
+</html>
