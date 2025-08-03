@@ -1,4 +1,31 @@
-<?php include 'db.php'; ?>
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require 'db_connect.php';
+
+    $fullname = trim($_POST['fullname']);
+    $username = trim($_POST['username']);
+    $email = trim($_POST['email']);
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $dob = $_POST['dob'];
+    $gender = $_POST['gender'];
+
+    if (empty($fullname) || empty($username) || empty($email) || empty($_POST['password'])) {
+        $message = "Please fill in all required fields.";
+    } else {
+        $stmt = $conn->prepare("INSERT INTO users (fullname, username, email, password, dob, gender) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssss", $fullname, $username, $email, $password, $dob, $gender);
+
+        if ($stmt->execute()) {
+            $message = "Registration successful!";
+        } else {
+            $message = "Error: " . $stmt->error;
+        }
+
+        $stmt->close();
+        $conn->close();
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html>
@@ -9,8 +36,8 @@
 <body>
 <table>
   <tr class="nav">
-    <td><a href="index.php">Home</a></td>
-    <td><a href="about.php">About</a></td>
+    <td><a href="index.html">Home</a></td>
+    <td><a href="about.html">About</a></td>
     <td colspan="2"></td>
     <td><a href="login.php">Login</a></td>
     <td><a href="register.php">Register</a></td>
@@ -24,46 +51,22 @@
   <tr>
     <td colspan="4" class="content">
       <h2>Sign Up</h2>
-
-      <?php
-      if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $fullname = trim($_POST["fullname"]);
-        $username = trim($_POST["username"]);
-        $email = trim($_POST["email"]);
-        $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-        $dob = $_POST["dob"];
-        $gender = $_POST["gender"] ?? null;
-
-        $sql = "INSERT INTO users (fullname, username, email, password, dob, gender) 
-                VALUES (?, ?, ?, ?, ?, ?)";
-
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssssss", $fullname, $username, $email, $password, $dob, $gender);
-
-        if ($stmt->execute()) {
-          echo "<p style='color:green;'>Registration successful!</p>";
-        } else {
-          echo "<p style='color:red;'>Error: " . $conn->error . "</p>";
-        }
-        $stmt->close();
-      }
-      ?>
-
-      <form id="registerForm" method="post">
+      <?php if (!empty($message)) echo "<p class='status-msg'>$message</p>"; ?>
+      <form id="registerForm" action="register.php" method="post">
         <label for="fullname">Full Name:</label>
-        <input type="text" name="fullname" id="fullname" placeholder="Enter your full name">
+        <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
 
         <label for="username">Username:</label>
-        <input type="text" name="username" id="username" placeholder="Enter a username">
+        <input type="text" id="username" name="username" placeholder="Enter a username" required>
 
         <label for="email">Email:</label>
-        <input type="email" name="email" id="email" placeholder="Enter your email address">
+        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
 
         <label for="password">Password:</label>
-        <input type="password" name="password" id="password" placeholder="Enter a strong password">
+        <input type="password" id="password" name="password" placeholder="Enter a strong password" required>
 
         <label for="dob">Date of Birth:</label>
-        <input type="date" name="dob" id="dob">
+        <input type="date" id="dob" name="dob">
 
         <label>Gender:</label>
         <div class="option-group">
@@ -77,8 +80,8 @@
     <td colspan="2" class="sidebar">
       <h3>Quick Links</h3>
       <ul>
-        <li><a href="index.php">Home</a></li>
-        <li><a href="about.php">About</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="login.php">Login</a></li>
         <li><a href="register.php">Register</a></li>
       </ul>

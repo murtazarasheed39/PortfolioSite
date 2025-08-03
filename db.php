@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = ""; // adjust if you have a password
-$dbname = "portfolio_db"; // adjust to your database name
+$dbname = "db.sql"; // adjust to your database name
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
